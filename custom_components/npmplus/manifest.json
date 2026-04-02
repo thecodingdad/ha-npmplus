@@ -4,9 +4,9 @@
   "codeowners": ["@thecodingdad"],
   "config_flow": true,
   "documentation": "https://github.com/thecodingdad/ha-npmplus",
-  "issue_tracker": "https://github.com/thecodingdad/ha-npmplus/issues",
   "integration_type": "hub",
   "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/thecodingdad/ha-npmplus/issues",
   "requirements": [],
   "version": "1.0.0"
 }
