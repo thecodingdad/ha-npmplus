@@ -11,7 +11,7 @@
           "verify_ssl": "SSL-Zertifikat verifizieren"
         },
         "data_description": {
-          "url": "Die URL Ihrer NPMplus-Instanz (z.B. https://npm.example.com:81)",
+          "url": "Die URL Ihrer NPMplus-Instanz (z.B. {example_url})",
           "verify_ssl": "Deaktivieren bei selbstsigniertem Zertifikat"
         }
       }

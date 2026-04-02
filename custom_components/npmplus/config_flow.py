@@ -92,6 +92,9 @@ class NPMplusConfigFlow(ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=STEP_USER_DATA_SCHEMA,
             errors=errors,
+            description_placeholders={
+                "example_url": "https://npm.example.com:81",
+            },
         )
 
 
