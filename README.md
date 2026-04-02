@@ -14,7 +14,7 @@ Home Assistant integration for Nginx Proxy Manager Plus (NPMplus). Control proxy
 
 ## Prerequisites
 
-- Home Assistant 2024.1.0 or newer
+- Home Assistant 2026.3.0 or newer
 - Running NPMplus instance
 
 ## Installation
