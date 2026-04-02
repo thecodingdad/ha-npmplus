@@ -2,7 +2,7 @@
 
 Home Assistant integration for Nginx Proxy Manager Plus (NPMplus). Control proxy hosts and monitor their status.
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub Release](https://img.shields.io/github/v/release/thecodingdad/ha-npmplus)](https://github.com/thecodingdad/ha-npmplus/releases)
 
 ## Features
@@ -21,10 +21,13 @@ Home Assistant integration for Nginx Proxy Manager Plus (NPMplus). Control proxy
 
 ### HACS (Recommended)
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=thecodingdad&repository=ha-npmplus&category=integration)
+
+Or add manually:
 1. Open HACS in your Home Assistant instance
-2. Click "Explore & Download Repositories"
-3. Search for "NPMplus"
-4. Click "Download"
+2. Click the three dots in the top right corner and select **Custom repositories**
+3. Enter `https://github.com/thecodingdad/ha-npmplus` and select **Integration** as the category
+4. Click **Add**, then search for "NPMplus" and download it
 5. Restart Home Assistant
 
 ### Manual Installation
