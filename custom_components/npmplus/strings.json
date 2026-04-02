@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NPMplus Setup",
+        "description": "Enter the connection details for your NPMplus instance.",
+        "data": {
+          "url": "URL",
+          "username": "Email",
+          "password": "Password",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "The URL of your NPMplus instance (e.g. https://npm.example.com:81)",
+          "verify_ssl": "Disable if using a self-signed certificate"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to NPMplus.",
+      "invalid_auth": "Invalid email or password.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This NPMplus instance is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "NPMplus Options",
+        "data": {
+          "scan_interval": "Scan interval (seconds)"
+        },
+        "data_description": {
+          "scan_interval": "How often to poll proxy host status (5-3600 seconds)"
+        }
+      }
+    }
+  }
+}

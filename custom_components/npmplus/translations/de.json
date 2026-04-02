@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NPMplus Einrichtung",
+        "description": "Geben Sie die Verbindungsdaten Ihrer NPMplus-Instanz ein.",
+        "data": {
+          "url": "URL",
+          "username": "E-Mail",
+          "password": "Passwort",
+          "verify_ssl": "SSL-Zertifikat verifizieren"
+        },
+        "data_description": {
+          "url": "Die URL Ihrer NPMplus-Instanz (z.B. https://npm.example.com:81)",
+          "verify_ssl": "Deaktivieren bei selbstsigniertem Zertifikat"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zu NPMplus fehlgeschlagen.",
+      "invalid_auth": "Ungueltige E-Mail oder Passwort.",
+      "unknown": "Unerwarteter Fehler."
+    },
+    "abort": {
+      "already_configured": "Diese NPMplus-Instanz ist bereits konfiguriert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "NPMplus Optionen",
+        "data": {
+          "scan_interval": "Abfrageintervall (Sekunden)"
+        },
+        "data_description": {
+          "scan_interval": "Wie oft der Proxy-Host-Status abgefragt wird (5-3600 Sekunden)"
+        }
+      }
+    }
+  }
+}
