@@ -1,6 +1,6 @@
 # NPMplus
 
-Home Assistant integration for Nginx Proxy Manager Plus (NPMplus). Control proxy hosts and monitor their status.
+Home Assistant integration for Nginx Proxy Manager (Plus). Control proxy hosts and monitor their status.
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub Release](https://img.shields.io/github/v/release/thecodingdad/ha-npmplus)](https://github.com/thecodingdad/ha-npmplus/releases)
