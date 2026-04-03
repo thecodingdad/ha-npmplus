@@ -144,12 +144,22 @@ class NPMplusApiClient:
         if resp.status in (401, 403):
             raise NPMplusAuthError("Authentication failed")
 
+        if resp.status >= 400:
+            raise NPMplusConnectionError(
+                f"NPMplus API error: {method} {path} returned status {resp.status}"
+            )
+
         return resp
 
     async def async_get_proxy_hosts(self) -> list[dict[str, Any]]:
         """Fetch all proxy hosts."""
         resp = await self._request("GET", "/api/nginx/proxy-hosts")
-        return await resp.json()
+        data = await resp.json(content_type=None)
+        if not isinstance(data, list):
+            raise NPMplusConnectionError(
+                f"Unexpected API response for proxy hosts: expected list, got {type(data).__name__}"
+            )
+        return data
 
     async def async_enable_proxy_host(self, host_id: int) -> None:
         """Enable a proxy host."""
