@@ -107,19 +107,12 @@ class NPMplusApiClient:
             return {"Authorization": f"Bearer {self._token}"}
         return {}
 
-    async def _request(
-        self, method: str, path: str, **kwargs: Any
+    async def _do_request(
+        self, session: aiohttp.ClientSession, method: str, url: str, **kwargs: Any
     ) -> aiohttp.ClientResponse:
-        """Make an authenticated API request with auto re-auth on 401."""
-        session = await self._ensure_session()
-
-        if not self._authenticated:
-            await self.async_authenticate()
-
-        url = f"{self._base_url}{path}"
-
+        """Execute a single HTTP request."""
         try:
-            resp = await session.request(
+            return await session.request(
                 method, url, ssl=self._get_ssl_context(),
                 headers=self._auth_headers(), **kwargs
             )
@@ -128,18 +121,28 @@ class NPMplusApiClient:
                 f"Cannot connect to NPMplus at {self._base_url}"
             ) from err
 
-        if resp.status == 401:
-            # Auth expired — re-authenticate once
+    async def _request(
+        self, method: str, path: str, **kwargs: Any
+    ) -> aiohttp.ClientResponse:
+        """Make an authenticated API request with auto re-auth on failure."""
+        session = await self._ensure_session()
+
+        if not self._authenticated:
             await self.async_authenticate()
-            try:
-                resp = await session.request(
-                    method, url, ssl=self._get_ssl_context(),
-                    headers=self._auth_headers(), **kwargs
-                )
-            except (aiohttp.ClientError, TimeoutError) as err:
-                raise NPMplusConnectionError(
-                    f"Cannot connect to NPMplus at {self._base_url}"
-                ) from err
+
+        url = f"{self._base_url}{path}"
+        resp = await self._do_request(session, method, url, **kwargs)
+
+        if resp.status < 400:
+            return resp
+
+        if resp.status == 403:
+            raise NPMplusAuthError("Authentication failed")
+
+        # Any other error (401, 404, 5xx) could be a stale session — re-auth once
+        self._authenticated = False
+        await self.async_authenticate()
+        resp = await self._do_request(session, method, url, **kwargs)
 
         if resp.status in (401, 403):
             raise NPMplusAuthError("Authentication failed")
