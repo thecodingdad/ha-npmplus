@@ -45,6 +45,10 @@ class NPMplusCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
         except NPMplusAuthError as err:
             raise ConfigEntryAuthFailed from err
         except NPMplusConnectionError as err:
+            # Force a fresh session on next poll to recover from stuck connector
+            # state (stale DNS, dead sockets, lingering TimeoutError after server
+            # restart) that aiohttp's pool eviction may not detect.
+            await self.api.async_close()
             raise UpdateFailed(f"Cannot connect to NPMplus: {err}") from err
 
     async def async_shutdown(self) -> None:

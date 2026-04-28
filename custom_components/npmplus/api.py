@@ -10,6 +10,8 @@ import aiohttp
 
 _LOGGER = logging.getLogger(__name__)
 
+REQUEST_TIMEOUT = aiohttp.ClientTimeout(total=15)
+
 
 class NPMplusConnectionError(Exception):
     """Error connecting to NPMplus."""
@@ -52,7 +54,9 @@ class NPMplusApiClient:
         """Create or return the dedicated session with cookie jar."""
         if self._session is None or self._session.closed:
             jar = aiohttp.CookieJar(unsafe=True)
-            self._session = aiohttp.ClientSession(cookie_jar=jar)
+            self._session = aiohttp.ClientSession(
+                cookie_jar=jar, timeout=REQUEST_TIMEOUT
+            )
             self._authenticated = False
         return self._session
 
@@ -74,8 +78,8 @@ class NPMplusApiClient:
                 json={"identity": self._identity, "secret": self._secret},
                 ssl=self._get_ssl_context(),
             )
-        except Exception as err:
-            _LOGGER.error(
+        except (aiohttp.ClientError, TimeoutError) as err:
+            _LOGGER.debug(
                 "NPMplus connection error (%s): %s", type(err).__name__, err
             )
             raise NPMplusConnectionError(
