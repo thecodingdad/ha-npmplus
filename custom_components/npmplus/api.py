@@ -140,10 +140,7 @@ class NPMplusApiClient:
         if resp.status < 400:
             return resp
 
-        if resp.status == 403:
-            raise NPMplusAuthError("Authentication failed")
-
-        # Any other error (401, 404, 5xx) could be a stale session — re-auth once
+        # Any error could be a stale session — re-auth once and retry
         self._authenticated = False
         await self.async_authenticate()
         resp = await self._do_request(session, method, url, **kwargs)

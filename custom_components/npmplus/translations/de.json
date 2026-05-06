@@ -14,6 +14,14 @@
           "url": "Die URL Ihrer NPMplus-Instanz (z.B. {example_url})",
           "verify_ssl": "Deaktivieren bei selbstsigniertem Zertifikat"
         }
+      },
+      "reauth_confirm": {
+        "title": "NPMplus erneut authentifizieren",
+        "description": "Authentifizierung fuer {url} fehlgeschlagen. Bitte aktuelle Zugangsdaten eingeben.",
+        "data": {
+          "username": "E-Mail",
+          "password": "Passwort"
+        }
       }
     },
     "error": {
@@ -22,7 +30,8 @@
       "unknown": "Unerwarteter Fehler."
     },
     "abort": {
-      "already_configured": "Diese NPMplus-Instanz ist bereits konfiguriert."
+      "already_configured": "Diese NPMplus-Instanz ist bereits konfiguriert.",
+      "reauth_successful": "Erneute Authentifizierung erfolgreich."
     }
   },
   "options": {

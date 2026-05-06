@@ -14,6 +14,14 @@
           "url": "The URL of your NPMplus instance (e.g. {example_url})",
           "verify_ssl": "Disable if using a self-signed certificate"
         }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate NPMplus",
+        "description": "Authentication failed for {url}. Please enter your current credentials.",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
       }
     },
     "error": {
@@ -22,7 +30,8 @@
       "unknown": "Unexpected error."
     },
     "abort": {
-      "already_configured": "This NPMplus instance is already configured."
+      "already_configured": "This NPMplus instance is already configured.",
+      "reauth_successful": "Reauthentication successful."
     }
   },
   "options": {
